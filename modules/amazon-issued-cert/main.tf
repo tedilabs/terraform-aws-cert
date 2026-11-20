@@ -83,12 +83,25 @@ locals {
       value = record.resource_record_value
     }
   }
+  # INFO: Find the Hosted Zone with the longest name which matches the domain
+  dns_validation_zones = {
+    for name in local.subject_names :
+    name => [
+      for zone in keys(var.dns_validation.managed_zones) :
+      zone
+      if replace(name, "*.", "") == zone || endswith(replace(name, "*.", ""), ".${zone}")
+    ]
+  }
 }
 
 resource "aws_route53_record" "validation" {
   for_each = toset(local.dns_validation_enabled ? local.subject_names : [])
 
-  zone_id = var.dns_validation.managed_zones[replace(each.value, "*.", "")]
+  zone_id = var.dns_validation.managed_zones[[
+    for zone in local.dns_validation_zones[each.value] :
+    zone
+    if length(zone) == max(0, [for z in local.dns_validation_zones[each.value] : length(z)]...)
+  ][0]]
   name    = local.dns_validation_records[each.value].name
   type    = local.dns_validation_records[each.value].type
   records = [local.dns_validation_records[each.value].value]
