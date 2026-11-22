@@ -66,7 +66,7 @@ variable "dns_validation" {
   description = <<EOF
   (Optional) The configuration for the DNS validation. `dns_validation` as defined below.
     (Optional) `enabled` - Whether to process DNS validation by creating the necessary domain records in the module. Defaults to `false`.
-    (Optional) `managed_zones` - List of Hosted Zones to automatically manage the records for DNS validation as a map. The key is the name of Hosted Zone. The value is the ID of Hosted Zone.
+    (Optional) `managed_zones` - List of Hosted Zones to automatically manage the records for DNS validation as a map. The key is the domain name to validate. For a wildcard name, use the domain without the leading `*.` (for example, `app.example.com` for `*.app.example.com`). The value is the ID of the Hosted Zone which manages the domain.
   EOF
   type = object({
     enabled       = optional(bool, false)
