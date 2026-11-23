@@ -25,14 +25,14 @@ variable "subject_alternative_names" {
 }
 
 variable "key_algorithm" {
-  description = "(Optional) The algorithm of the public and private key pair that your Amazon issued certificate uses to encrypt data. RSA is the default key algorithm for ACM certificates. Elliptic Curve Digital Signature Algorithm (ECDSA) keys are smaller, offering security comparable to RSA keys but with greater computing efficiency. However, ECDSA is not supported by all network clients. Some AWS services may require RSA keys, or only support ECDSA keys of a particular size, while others allow the use of either RSA and ECDSA keys to ensure that compatibility is not broken. Supported values are `RSA_1024`, `RSA_2048`, `RSA_3072`, `RSA_4096`, `ECDSA_P256`, `ECDSA_P384`, `ECDSA_P521`. Defaults to `RSA_2048`."
+  description = "(Optional) The algorithm of the public and private key pair that your Amazon issued certificate uses to encrypt data. RSA is the default key algorithm for ACM certificates. Elliptic Curve Digital Signature Algorithm (ECDSA) keys are smaller, offering security comparable to RSA keys but with greater computing efficiency. However, ECDSA is not supported by all network clients. Some AWS services may require RSA keys, or only support ECDSA keys of a particular size, while others allow the use of either RSA and ECDSA keys to ensure that compatibility is not broken. Supported values are `RSA_2048`, `ECDSA_P256`, `ECDSA_P384`. Defaults to `RSA_2048`."
   type        = string
   default     = "RSA_2048"
   nullable    = false
 
   validation {
-    condition     = contains(["RSA_1024", "RSA_2048", "RSA_3072", "RSA_4096", "ECDSA_P256", "ECDSA_P384", "ECDSA_P521"], var.key_algorithm)
-    error_message = "Valid values for `key_algorithm` are `RSA_1024`, `RSA_2048`, `RSA_3072`, `RSA_4096`, `ECDSA_P256`, `ECDSA_P384`, `ECDSA_P521`."
+    condition     = contains(["RSA_2048", "ECDSA_P256", "ECDSA_P384"], var.key_algorithm)
+    error_message = "Valid values for `key_algorithm` are `RSA_2048`, `ECDSA_P256`, `ECDSA_P384`."
   }
 }
 
