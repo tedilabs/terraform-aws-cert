@@ -44,7 +44,7 @@ variable "certificate_transparency_logging_enabled" {
 }
 
 variable "export_enabled" {
-  description = "(Optional) Whether the certificate can be exported. Defaults to `false`. NOTE: Note Issuing an exportable certificate is subject to additional charges."
+  description = "(Optional) Whether the certificate can be exported. Defaults to `false`. NOTE: Issuing an exportable certificate is subject to additional charges."
   type        = bool
   default     = false
   nullable    = false
@@ -79,7 +79,7 @@ variable "dns_validation" {
 variable "email_validation" {
   description = <<EOF
   (Optional) The configuration for the Email validation. `email_validation` as defined below.
-    (Optional) `enabled` - Whether to process Email validation by waiting the manual approval. Defaults to `false`.
+    (Optional) `enabled` - Whether to process Email validation by waiting for the manual approval. Defaults to `false`.
   EOF
   type = object({
     enabled = optional(bool, false)
@@ -96,7 +96,7 @@ variable "tags" {
 }
 
 variable "module_tags_enabled" {
-  description = "(Optional) Whether to create AWS Resource Tags for the module informations."
+  description = "(Optional) Whether to create AWS Resource Tags for the module information."
   type        = bool
   default     = true
   nullable    = false
@@ -109,7 +109,7 @@ variable "module_tags_enabled" {
 
 variable "resource_group" {
   description = <<EOF
-  (Optional) A configurations of Resource Group for this module. `resource_group` as defined below.
+  (Optional) A configuration of Resource Group for this module. `resource_group` as defined below.
     (Optional) `enabled` - Whether to create Resource Group to find and group AWS resources which are created by this module. Defaults to `true`.
     (Optional) `name` - The name of Resource Group. A Resource Group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`. If not provided, a name will be generated using the module name and instance name.
     (Optional) `description` - The description of Resource Group. Defaults to `Managed by Terraform.`.
