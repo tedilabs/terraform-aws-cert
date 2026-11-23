@@ -37,7 +37,7 @@ variable "key_algorithm" {
 }
 
 variable "certificate_transparency_logging_enabled" {
-  description = "(Optional) Whether to add the certificate to a certificate transparency log. Transparency makes it possible to detect SSL/TLS certificates that have been mistakenly or maliciously issued. Certificates that have not been logged typically produce an error message in a browser. Defaults to `true`."
+  description = "(Optional) Whether to add the certificate to a certificate transparency log. Transparency makes it possible to detect SSL/TLS certificates that have been mistakenly or maliciously issued. Certificates that have not been logged typically produce an error message in a browser. Defaults to `true`. NOTE: Certificate transparency logging opt-out is no longer available in ACM. ACM records all public certificates in a certificate transparency log."
   type        = bool
   default     = true
   nullable    = false
