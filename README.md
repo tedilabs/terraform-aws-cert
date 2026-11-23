@@ -26,7 +26,7 @@ Terraform Modules from [this package](https://github.com/tedilabs/terraform-aws-
 
 ### ACM (AWS Certificate Manager)
 
-- Comming soon...
+- Coming soon...
 
 
 ## Self Promotion
